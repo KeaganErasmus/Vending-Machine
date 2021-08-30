@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>Ara vending machine</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+        <script src="controller.js"></script>
+        <script src="vendingMachine.js"></script>
+        <link rel="stylesheet" type="text/css" href="table.css">
+
+    </head>
+        
+
+    <body>
+        
+    <section>
+        <div id="app-1">
+            <table class="card">
+                <th>Ara vending machine</th>
+                <th>Madras</th>
+            </table>
+            <H1>coins</H1>
+            <table class="card">
+                <tr>
+                    <th>Alloy</th>
+                    <th>Value(c)</th>
+                    <th>Weight</th>
+                    <th>Diameter</th>
+                    <th>Quantity</th>
+                </tr>
+                <tr  v-for="coin in coins">
+                    <td>{{coin.type}}</td>
+                    <td>${{coin.value}}</td>
+                    <td>{{coin.diameter}}</td>
+                    <td>{{coin.weight}}</td>
+                    <td>{{coin.quantity}}</td>
+                </tr>
+            </table>
+        </div>
+    </section>  
+
+    <br>
+
+    <section>
+        <H1>products</H1>
+        <div id="app-2">
+            <table class="card">
+                <tr>
+                    <th>Name</th>
+                    <th>Colour(c)</th>
+                    <th>Value</th>
+                    <th>Weight</th>
+                    <th>Quantity</th>
+                </tr>
+                <tr  v-for="product in products">
+                    <td>{{product.name}}</td>
+                    <td>{{product.colour}}</td>
+                    <td>${{product.price}}</td>
+                    <td>{{product.weight}}</td>
+                    <td>{{product.quantity}}</td>
+                </tr>
+            </table>
+        </div>
+
+
+        <div style="text-align: left;">
+            <h1>Vending Machine</h1>
+            <br>
+        
+            <p>Please select a drink :-)</p>
+            <form action="http://127.0.0.1:5000" method="POST">
+        
+                <input v-for="product in products"  type="radio" id="coke" name="drink" value="coke">
+                <label for="coke">COKE</label><br>
+        
+                <input type="radio" id="fanta" name="drink" value="fanta">
+                <label for="fanta">FANTA</label><br>
+        
+                <input type="radio" id="water" name="drink" value="dilbert">
+                <label for="dilbert">DILBERT</label><br>
+
+                <input type="radio" id="water" name="drink" value="whitakers">
+                <label for="whitakers">WHITAKERS</label><br>
+        
+                <p>Please insert money</p>
+                <input type="radio" id="five" name="money" value="5">
+                <label for="coke">$5.00</label><br>
+        
+                <input type="radio" id="10" name="money" value="10">
+                <label for="fanta">$10.00</label><br>
+        
+                <input type="radio" id="20" name="money" value="20">
+                <label for="water">$20.00</label><br>
+        
+                <br></br>
+                <input type="submit" value="submit">
+        
+            </form>
+        </div>
+
+    <script>
+        var theVendingMachine
+
+        function main() {
+            theVendingMachine = Controller.setup()
+        }
+    </script>
+    
+    </section>
+
+        <script>
+            var app1 = new Vue({
+                el: '#app-1',
+                data: {
+                    coins: [
+                        {type: 'cupra-nickel',diameter:23.62, weight:5.66, value:10, quantity:5},
+                        {type: 'cupra-nickel',diameter:23.62, weight:5.66, value:10, quantity:5}
+                    ]
+                }
+            })
+        </script>
+
+        <script>
+            var app2 = new Vue({
+                el: '#app-2',
+                data: {
+                    products: [
+                        {name: 'Dilert', weight: 500, colour: 'Brown', price: 1.5, quantity: 1},
+                        {name: 'whitakers', weight: 500, colour: 'Brown', price: 1.5, quantity: 1},
+                        {name: 'coke', weight: 500, colour: 'Brown', price: 1.5, quantity: 1},
+                        {name: 'fanta', weight: 500, colour: 'Brown', price: 1.5, quantity: 1}
+                    ]
+                }
+            })
+        </script>
+</body>
+
+</html>
